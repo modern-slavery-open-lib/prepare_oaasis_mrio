@@ -50,8 +50,6 @@ end
 
 %% Aggregators
 
-%[reg_agg_src,sec_agg_src] = get_basetable_aggregators(env.basetable_path,conc_dir,phase_str_global,loop_str_global);
-
 reg_agg = csvread(options.root_to_base_regagg);
 n_reg = size(reg_agg,1);
 assert(n_reg < size(reg_agg,2));
@@ -73,11 +71,11 @@ loop_str = options.base.loop;
 % Read and transform MRIO for each year
 for mrio_year = options.timeseries
     
-    disp(['Processing: ' num2str(mrio_year)]);
+    disp('.'); disp(['Processing: ' num2str(mrio_year)]);
     
     % Read the MRIO
     [T,y,v,~,~] = get_basetable_blocks_ii(basetable_path,num2str(mrio_year),phase_str,loop_str,margin,tbl_read_opts);
-    %[T,y,v] = get_tables(env.basetable_path,mrio_year,options.base.phase,options.base.loop,margin,tbl_read_opts);
+
     assert(~isempty(T) && ~isempty(v) && ~isempty(y));
     
     % Mirror global table
@@ -100,7 +98,7 @@ for mrio_year = options.timeseries
     
     % IIOT conversion
     if iiot_conversion
-        sut_to_iiot_conversion(T,v,y,n_y,n_v,n_reg,n_sec)
+        sut_to_iiot_conversion(T,v,y,n_y,n_v,n_reg,n_sec);
     end
     
     % Total output
