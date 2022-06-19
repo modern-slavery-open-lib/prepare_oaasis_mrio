@@ -98,7 +98,7 @@ for mrio_year = options.timeseries
     
     % IIOT conversion
     if iiot_conversion
-        sut_to_iiot_conversion(T,v,y,n_y,n_v,n_reg,n_sec);
+        [T,v,y] = sut_to_iiot_conversion(T,v,y,n_y,n_v,n_reg,n_sec);
     end
     
     % Total output
